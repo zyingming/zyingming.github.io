@@ -37,7 +37,7 @@ class Cars(model.Model):
 Just like this, Any permission could be added to the Model. Now in order to get
 these permissions in the database. You need to run migrate management command.
 
-![Alt text](../images/20180226.png "console this")
+![Alt text](./images/20180226.png "console this")
 
 {% highlight bash %}
 python manage.py migrate
