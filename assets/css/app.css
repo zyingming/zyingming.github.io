@@ -17,6 +17,9 @@ body {
 .h6 {
   margin: 0;
 }
+.h3 {
+  font-size: 20px;
+}
 a {
   color: #2e3e4e;
   text-decoration: none;
@@ -2784,6 +2787,12 @@ fieldset[disabled] .btn-gplus.active {
 }
 .l-h {
   line-height: 1.5;
+}
+.left-20 {
+  margin-left: 20px;
+}
+.right-20 {
+  margin-right: 20px;
 }
 .v-middle {
   vertical-align: middle !important;
