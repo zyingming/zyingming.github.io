@@ -18,6 +18,7 @@ body {
   margin: 0;
 }
 .h3 {
+  line-height: 1.5;
   font-size: 20px;
   display: block;
 }
@@ -2721,7 +2722,7 @@ fieldset[disabled] .btn-gplus.active {
 .line {
   *width: 100%;
   height: 2px;
-  margin: 10px 0;
+  margin: 8px 0 10px 0;
   font-size: 0;
   overflow: hidden;
   background-color: transparent;
@@ -3231,6 +3232,14 @@ fieldset[disabled] .btn-gplus.active {
   font-size: 170px;
   font-weight: 300;
   text-shadow: 0 1px 0 #d9d9d9, 0 2px 0 #d0d0d0, 0 5px 10px rgba(0,0,0,0.125), 0 10px 20px rgba(0,0,0,0.2);
+}
+.me-github a {
+  color: #717171;
+  font-size: 13px;
+}
+.me-github a i.fa-fw{
+  font-size: 15px;
+  text-align: left;
 }
 @media screen and (min-width: 992px) {
   .col-lg-2-4 {
