@@ -2,8 +2,9 @@
   {% include display_icon.html %}
   <div class="media-body">
     <a href="{{ post.url | prepend: site.baseurl }}" class="h3 text-success">{{ post.title }}</a>
-    <em class="text-xs font-normal">
-      <i class="fa fa-calendar" aria-hidden="true"></i><span class="text-danger">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <em class="text-xs font-style-normal">
+      <i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px"></i>
+      <span class="font-normal">{{ post.date | date: "%b %-d, %Y" }}</span>
     </em>
     <small class="m-t-xs left-20">
       {% for post_tag in post.tags %}

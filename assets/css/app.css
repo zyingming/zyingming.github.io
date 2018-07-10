@@ -19,6 +19,7 @@ body {
 }
 .h3 {
   font-size: 20px;
+  display: block;
 }
 a {
   color: #2e3e4e;
@@ -2814,6 +2815,9 @@ fieldset[disabled] .btn-gplus.active {
 }
 .font-bold {
   font-weight: 700;
+}
+.font-style-normal {
+  font-style: normal;
 }
 .text-md {
   font-size: 0.85em;
