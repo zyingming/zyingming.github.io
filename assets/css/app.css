@@ -3233,6 +3233,7 @@ fieldset[disabled] .btn-gplus.active {
   font-weight: 300;
   text-shadow: 0 1px 0 #d9d9d9, 0 2px 0 #d0d0d0, 0 5px 10px rgba(0,0,0,0.125), 0 10px 20px rgba(0,0,0,0.2);
 }
+/* 自定义 */
 .me-github a {
   color: #717171;
   font-size: 13px;
@@ -3243,6 +3244,23 @@ fieldset[disabled] .btn-gplus.active {
 }
 .post-meta span {
   margin-right: 5px;
+}
+.pagination-post {
+  display: block;
+}
+.pagination-post a {
+  display: block;
+  width: 50%;
+  float: left;
+}
+.pagination-post .previous {
+  text-align: right;
+}
+.right-5 {
+  margin-right: 5px;
+}
+.left-5 {
+  margin-left: 5px;
 }
 @media screen and (min-width: 992px) {
   .col-lg-2-4 {

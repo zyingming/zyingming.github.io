@@ -48,15 +48,15 @@
                     </div>
                   </div>
                 </section> -->
-                <div class="pagination">
+                <div class="pagination pagination-post">
                   {% if page.next %}
                     <a href="{{ site.baseurl}}{{ page.next.url }}" class="next">
-                    <i class="fa fa-caret-left right-20" aria-hidden="true"></i>{{page.next.title}}
+                    <i class="fa fa-caret-left right-5" aria-hidden="true"></i>{{page.next.title}}
                   </a>
                   {% endif %}
                   {% if page.previous %}
                     <a href="{{ site.baseurl}}{{ page.previous.url }}" class="previous">
-                      {{page.title}}<i class="fa fa-caret-right left-20" aria-hidden="true"></i>
+                      {{page.previous.title}}<i class="fa fa-caret-right left-5" aria-hidden="true"></i>
                     </a>
                   {% endif %}
               </div>
