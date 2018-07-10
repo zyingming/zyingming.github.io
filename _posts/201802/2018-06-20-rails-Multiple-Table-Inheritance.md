@@ -2,9 +2,8 @@
 layout: post
 title:  "Rails 中的多表继承"
 date:   2018-06-20 12:00:00
-
 categories: rails
-tags: advanced
+tags: advanced javascript vue
 author: "Victor"
 ---
 
