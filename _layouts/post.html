@@ -14,11 +14,11 @@
                 <h2 class="post-title">{{ page.title }}</h2>
                 <div class="post-meta">
                   <span><i class="fa fa-clock-o" aria-hidden="true"></i> 
-                    {{ page.date }}
+                    {{ page.date | date: "%b %-d, %Y" }}
                   </span>
-                  <span> 
+                  <span><i class="fa fa-tags right-5" aria-hidden="true"></i> 
                     {% for post_tag in page.tags %}
-                      <i class="fa fa-tags" aria-hidden="true"></i>{{ post_tag }}
+                      {{ post_tag }}
                       {% unless forloop.last %}, {% endunless %}
                     {% endfor %}
                   </span>
