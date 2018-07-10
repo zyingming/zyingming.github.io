@@ -1989,6 +1989,7 @@ fieldset[disabled] .btn-gplus.active {
 }
 .post-item .post-title {
   margin-top: 0;
+  color: #000000;
 }
 .post-item .post-media {
   text-align: center;
@@ -3243,7 +3244,7 @@ fieldset[disabled] .btn-gplus.active {
   text-align: left;
 }
 .post-meta span {
-  margin-right: 5px;
+  margin-right: 10px;
 }
 .pagination-post {
   display: block;
