@@ -1,5 +1,7 @@
-node_modules/*
 _site
+.tags
+.ruby-gemset
+.ruby-version
+.DS_Store
 .sass-cache
 .jekyll-metadata
-Gemfile.lock
