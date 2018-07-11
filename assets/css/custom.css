@@ -50,6 +50,22 @@
   padding: 10px;
   border: 1px solid #e2d6d6; 
 }
+.icon-text {
+  background: #fff;
+}
+
+.text-red {
+  color: #ca0c16;
+  border: 1px solid #f4ced0;
+}
+.text-green {
+  color: #86ca5e;
+  border: 1px solid #e7f4df;
+}
+.text-blue {
+  color: #5e74ca;
+  border: 1px solid #aabee0;
+}
 
 .pagination > li > a, .pagination > li > span { color: rgb(142, 193, 101); }
 
