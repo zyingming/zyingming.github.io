@@ -7,7 +7,7 @@
       <span class="font-normal">{{ post.date | date: "%b %-d, %Y" }}</span>
     </em>
     <small class="m-t-xs left-20"><i class="fa fa-tags right-5" aria-hidden="true"></i> 
-      {% for post_tag in post.tags %}
+      {% for post_tag in post.marks %}
         {{ post_tag }}
         {% unless forloop.last %}, {% endunless %}
       {% endfor %}
