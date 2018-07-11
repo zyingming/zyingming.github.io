@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "default title"
+title:  "Css Word读书笔记（下）"
 date:   2018-07-11 14:51:01
 categories: css
-tags: css layout
+tags: css
+tag: css layout
 icon: original
 author: "zyingming"
 ---
@@ -31,6 +32,7 @@ author: "zyingming"
 - `line-height`不会影响替换元素的高度，这时的`box`高度是`256px`，并不是因为`line-height`影响了图片高度，而是因为图片前有一个宽度为0的“幽灵空白节点”受其影响
     - 在纯内联无替换元素中，`line-height`决定最终高度
     - 在图文混排中，`line-height`只能决定最小高度
+
 ```javascript
 //div.box>img
 .box{line-height:256px;}
@@ -39,6 +41,7 @@ author: "zyingming"
 - 当`line-height:20px`，文字后面有小图标，最后的行框盒子的高度却大于20，需要在小图标上设置`vertical-align`
 
 - `line-height`让内联元素近似居中：主要是因为`vertical-align:middle`并不是相对于容器的中分线
+
 ```javascript
 // div.box>div.conent
 .box {
@@ -65,13 +68,14 @@ body{font-size:14px;line-height:150%}
 ```
 
 - 想要`line-height:150%`像`line-height:1.5`，一样被继承， `line-height`可以天然继承，但是考虑到按钮，输入框等具有自己的一套css属性，因为继承的权重最弱，所以采用通配符，直接重置这些替换元素的默认`line-height`。可以使用`*{line-height:150%}`考虑通配符的性能，可是采用下方
+
 ```javascript
 body{line-height:1.5}//??
 input,button{line-height:inherit}
 ```
 - 使用数值作为全局`line-height`时，要向上取舍。比如想得到`20px`，字体大小`14px`那么，`line-height:20/14=1.4285714826`，向上取舍行高为`line-height:1.42858`。因为向下取舍在`chrome`下，高度呈现`19px`而不是`20px`
 
-##### 5.3.1 `vertical-align`基本认识
+#### 5.3.1 `vertical-align`基本认识
 - `vertical-align`的正值是往上偏移，负值是往下偏移。而且数值大小是相对于基线进行偏移。属性值有：数值类`10px`无兼容性问题，百分比类`10%`，使用关键字属性`middle/text-top`等的`IE6,7`渲染规则与其他浏览器大相径庭，需要些`css hack`
 - `vertical-align:middle`并不是准确的居中，误差大小与字号相关，需要准确像素时可以使用数值类`-5px`进行调整
 - `vertical-align:50%`的百分比值相对于`line-height`计算
@@ -79,6 +83,7 @@ input,button{line-height:inherit}
     - 只能应用于内联元素包括替换元素，`display`为`table-cell/inline/inline-block/inline-table`的元素，非HTML规范的自定义标签元素，以及`<td>`单元格
     - `float`和绝对定位会让元素块状化
 - 下方的`vertical-align`看着像是没有作用，没有让图片居中，实际是图片前面的“幽灵空白节点”高度太小，不足以让图片居中，将注释解开就可以看到效果。
+
 ```javascript
 .line-test {
     //line-height:120px;
@@ -91,16 +96,16 @@ input,button{line-height:inherit}
     vertical-align: middle;
 }
 ```
+
 - `vertical-align`设置在图片并没有效果，设置在`table-cell`就有居中效果。对于`display:table-cell`元素而言，`vertical-align`起作用的是`table-cell`元素自身，而不是子元素，就算其子元素时各块级元素，也可以让其有垂直对齐的表现。
 
 #### 5.3.3 `vertical-align`和`line-height`
 - 盒子里的图片`margin-top`负值到很大，图片也不会脱离盒子的原因在于图片的位置被“幽灵空白节点”的`vertical-calign:baseline`给限制住了。
 - 两个同尺寸的`inline-block`水平，一个是没有内联元素，后者`overflow`不是`visible`(是其他值)，基线是其`margin`底边缘。一个有字符，基线是最后一行内联元素的基线。
-
-
 - 利用`text-align:justify`实现列表两端对齐，可兼容IE。但内容需要超过一行，为了让任意个数的列表最后一行也是左对齐，需要在列表最后增加一行和列表宽度一样的空标签元素在占位。
     - `font-size:0` 修改了“幽灵空白节点”的高度
     - 或者在`<i></i>`中添加`&nbsp;`空格，改变`<i></i>`的基线
+
 ```javascript
 //div.box>img*3+i.justify-fix
 .box {
@@ -129,6 +134,7 @@ input,button{line-height:inherit}
     - `text-align:justify;text-justify: inter-ideograph;` 测试在`chrome`下还算正常，但是在`firefox`下不行
     - 强制整齐对齐，会把英文单词切断。`box.innerHTML = box.innerHTML.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').split("").join(" ").replace(/\s{3}/g, " &nbsp; ");`
 - 只有中文或者只有英文时
+
 ```javascript
 //或者js
 ox.style.textAlign = "justify";
@@ -142,6 +148,7 @@ text-justify: inter-ideograph;
 - 大小不固定的弹框永远居中
     - 伪元素换成普通元素（除去背景半透明），可以兼容ie7
     - 可以控制垂直居中的比例。伪元素的高度变成`90%`时，可以实现近似`2:3`的感觉。
+
 ```javascript
 //div.container>div.dialog>div.content
 .container {
@@ -190,11 +197,8 @@ filter:alpha(opacity=50 finishopacity=50 style=0 startx=0,starty=5,finishx=0,fin
 background: #000;
 ```
 
-
 #### 第六章 流的破坏与保护
-##### 6.1 `float`
-> 3.2节重新阅读
-
+#### 6.1 `float`
 - 浮动会产生文字环绕效果，此效果有两个特性父级高度塌陷和行框盒子区域限制共同作用的效果。如果元素设定的具体高度，就不存在高度塌陷，由于行框盒子区域的限制还是会出现文字环绕，而且要是浮动元素垂直区域超出高度范围，或者下面的元素`margin-top`负值上移，就会很容易使下面的元素发生文字环绕效果
 ```javascript
 //div.father>(div.float>img)+文字文字...+div{也会环绕的文字}
@@ -203,6 +207,7 @@ background: #000;
 
 - `h3{标题}>a{更多}` 使用`float`使链接居右，在`IE8+`的浏览器中是可以的，但在`IE7`则，链接会浮动在标题下一行的右边
 - 内容居中的左中右布局
+
 ```javascript
 //div.box>a.prev+a.next>h3.title
 .prev {
@@ -223,7 +228,7 @@ background: #000;
 - `clear`属性只对块级元素才有效，而`::after`默认是内联水平，所以需要设置`display`
 - `clear:both`只能在一定程度上消除浮动的影响，并不是完美的消除浮动元素的影响。
 
-##### 6.3 css世界的结界`BFC`
+#### 6.3 css世界的结界`BFC`
 - `BFC`：块级格式化上下文。
     - 一个元素具有`BFC`，内部的子元素再怎么翻腾，都不会影响外部的元素，所以`BFC`元素是不会发生`margin`重叠的
     - 也可以用来清除浮动的影响
@@ -236,6 +241,7 @@ background: #000;
 
 - 普通流体元素在设置了`overflow:hidden`后，会自动填充容器中除了浮动元素以外的剩余空间，形成自适应布局效果。
 - `display:table-cell` 让元素表现的像单元格一样，IE8+支持。即使宽度设置的再大，实际宽度也不会超过表格容器的宽度。
+
 ```javascript
 .bfc-content {
     width:999px;
@@ -267,6 +273,7 @@ background: #000;
     - 表格除了最后一栏不设定宽度，其余设定好宽度
 
 - 滚动条自定义。IE自定义效果不佳，略过。
+
 ```javascript
 ::-webkit-scrollbar { //血槽
     width: 8px;
@@ -290,14 +297,14 @@ background: #000;
 - 设置了`overflow:hidden`的容器也可以滚动出现所要显示的部分。
 
 
-##### `position`定位
+#### `position`定位
 - `float`与`postion`同时存在时`float`无效。
     - 块状化：当`position`为`absolute/fixed`，其`display`的值就是`block/table`
     - 破坏性
     - 格式化上下文
     - 包裹性：所以不必为了实现包裹性和`display:inline-block`同时存在
 
-##### `absolute`的包含块
+#### `absolute`的包含块
 - 根元素（大多数为`<html>`）被称为初始包含块
 - 如果该元素的`position`是`relative/static`，则包含块是有最近的块容器祖先盒的`content box`边界组成
 - 如果该元素的`position`是`fixed`，则包含块为初始包含块
