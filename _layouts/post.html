@@ -12,9 +12,9 @@
             <div class="post-item">
               <div class="caption wrapper-lg">
                 <h2 class="post-title">{{ page.title }}</h2>
-                <!-- <div class="post-meta">
-                  <span><i class="fa fa-clock-o" aria-hidden="true"></i> 
-                    {{ page.date | date: "%b %-d, %Y" }}
+                <div class="post-meta">
+                  <span>更新于：
+                    {{ page.update }}
                   </span>
                   <span><i class="fa fa-tags right-5" aria-hidden="true"></i> 
                     {% for post_tag in page.tags %}
@@ -22,10 +22,10 @@
                       {% unless forloop.last %}, {% endunless %}
                     {% endfor %}
                   </span>
-                </div> -->
-                <div class="progress progress-xxs m-t-sm">
-                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" style="width: 100%"></div>
                 </div>
+                <!-- <div class="progress progress-xxs m-t-sm">
+                  <div class="progress-bar progress-bar-success" data-toggle="tooltip" style="width: 100%"></div>
+                </div> -->
                 <div class="post-sum">
                   {{ content }}
                 </div>
