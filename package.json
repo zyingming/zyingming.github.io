@@ -1,0 +1,23 @@
+{
+  "name": "zyingming.github.io",
+  "version": "1.0.0",
+  "description": "记录在jekyll中常见操作的使用方法",
+  "main": "write-head-tool.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyingming/zyingming.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zyingming/zyingming.github.io/issues"
+  },
+  "homepage": "https://github.com/zyingming/zyingming.github.io#readme",
+  "dependencies": {
+    "moment": "^2.22.2"
+  }
+}
