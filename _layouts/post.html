@@ -14,11 +14,11 @@
                 <h2 class="post-title">{{ page.title }}</h2>
                 <div class="post-meta">
                   <span><i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px"></i>
-                    {{ post.date | date: "%b %-d, %Y" }}
+                    {{ page.date | date: "%b %-d, %Y" }}
                   </span>
                   <span><i class="fa fa-tags right-5" aria-hidden="true"></i> 
                     {% for tag in page.tag %}
-                      {{tag}}
+                      {{tag}},
                       {% unless forloop.last %}, {% endunless %}
                     {% endfor %}
                   </span>
