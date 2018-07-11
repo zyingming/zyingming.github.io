@@ -4,7 +4,7 @@ title:  "git命令，日常操作"
 date:   2018-07-11 16:05:05
 categories: tool
 tags: operate
-marks: git sublime
+marks: git, sublime
 icon: original
 author: "zyingming"
 ---

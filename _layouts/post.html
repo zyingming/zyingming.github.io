@@ -16,9 +16,9 @@
                   <span><i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px"></i>
                     {{ page.date | date: "%b %-d, %Y" }}
                   </span>
-                  <span>
+                  <span><i class="fa fa-tags right-5" aria-hidden="true"></i>
                     {% for post_tag in page.marks %}
-                      <i class="fa fa-tags right-5" aria-hidden="true"></i> {{post_tag}}
+                       {{post_tag}}
                       {% unless forloop.last %}, {% endunless %}
                     {% endfor %}
                   </span>
