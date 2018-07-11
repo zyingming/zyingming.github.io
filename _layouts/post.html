@@ -17,8 +17,8 @@
                     {{ page.date | date: "%b %-d, %Y" }}
                   </span>
                   <span><i class="fa fa-tags right-5" aria-hidden="true"></i> 
-                    {% for tag in page.tags %}
-                      {{tag}}
+                    {% for post_tag in page.tags %}
+                      {{post_tag}}
                       {% unless forloop.last %}, {% endunless %}
                     {% endfor %}
                   </span>
