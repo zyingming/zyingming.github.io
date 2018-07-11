@@ -10,7 +10,8 @@ let w_data = '---\r\n'+
 'title:  "default title"\r\n'+
 'date:   '+ moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') +'\r\n'+
 'categories: javascript\r\n'+
-'tags: default tags\r\n'+
+'tags: javascript\r\n'+
+'tag: tag\r\n'+
 'icon: original\r\n'+
 'author: "zyingming"\r\n'+
 '---';

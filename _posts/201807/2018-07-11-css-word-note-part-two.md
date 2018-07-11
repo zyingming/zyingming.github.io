@@ -17,6 +17,7 @@ author: "zyingming"
 
 - `ex`是一个字母x的高度，连`IE6`都支持。当图标容器高度是`1ex`，并且设置背景图标居中，则图标就和文字是天然垂直居中，而不使用`vertical-align`
 - 实现下拉三角
+
 ```javascript
 .icon-arrow {
     display: inline-block;
@@ -63,6 +64,7 @@ author: "zyingming"
 - `line-height`的属性值
     - 为数值`line-height:1.5`时，所有的子元素继承的都是这个值
     - 为百分比或者`em`为单位时，所有的子元素继承的是父级计算之后得到的值。如下方，子元素继承的是`150%*14=21px`而不是`150%`
+
 ```javascript
 body{font-size:14px;line-height:150%} 
 ```
@@ -73,6 +75,7 @@ body{font-size:14px;line-height:150%}
 body{line-height:1.5}//??
 input,button{line-height:inherit}
 ```
+
 - 使用数值作为全局`line-height`时，要向上取舍。比如想得到`20px`，字体大小`14px`那么，`line-height:20/14=1.4285714826`，向上取舍行高为`line-height:1.42858`。因为向下取舍在`chrome`下，高度呈现`19px`而不是`20px`
 
 #### 5.3.1 `vertical-align`基本认识
@@ -192,6 +195,7 @@ text-justify: inter-ideograph;
 - 背景半透明
     - 可制作`10px*10px`的半透明图片，采用`base64`，不支持`IE6/7`。
     - `IE6/7`可使用半透明滤镜，但是会出现子元素字体也变成透明的问题
+
 ```javascript
 filter:alpha(opacity=50 finishopacity=50 style=0 startx=0,starty=5,finishx=0,finishy=0);
 background: #000;
@@ -249,6 +253,7 @@ background: #000;
 }
 ```
 - 适应`IE7+`浏览器的自适应解决方案。`IE7`下`inline-block`会被当做`block`
+
 ```javascript
 .bfc-content{overflow:hidden}
 
@@ -311,6 +316,7 @@ background: #000;
 - 普通元素的百分比宽度是相对于父级的`content box`计算的，而绝对定位元素的宽度是相对于第一个`position`不是`static`的祖先元素计算的。
 
 - 应用：为了实现悬浮在删除图标时显示文字删除，常用`::before/::after`模拟小三角和矩形区，定位于图标，这时文字的宽度被图标宽度限制，就会出现断行的现象。
+
 ```javascript
 .icon-del {
     display: inline-block;
@@ -360,10 +366,12 @@ background: #000;
 ```
 
 - 实现列表或者模块右上角显示一个明显的标签，可相对于`padding`定位，直接使用数值0定位在右上角即可。
+
 ```javascript
 //div.list>img+(div.cell>h4.title+p.desc)+span.tag
 //tag 标签相对于 list 定位
 ```
+
 - 当标签需要定位在内容边缘而不是列表边缘时，可使用透明边框`border`撑开容器
 
 - 无依赖`absolute`定位
@@ -371,6 +379,7 @@ background: #000;
 ![Alt Text](imgs/absolute.png)
 
 - 实现这种图片左上角的定位可直接
+
 ```javascript
 // img.top1+img
 .top1 {position:absolute}
