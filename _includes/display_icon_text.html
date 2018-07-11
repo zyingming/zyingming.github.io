@@ -1,10 +1,11 @@
 <div class="pull-left">
   <span class="fa-stack fa-lg">
-  	{% if post.icon contains 'origin' %}
-	  	<i class="icon-text text-red">原</i>
-  	{% if post.icon contains 'reprint' %}
-	  	<i class="icon-text text-green">转</i>
   	{% if post.icon contains 'translate' %}
 	  	<i class="icon-text text-blue">译</i>
+  	{% elsif post.icon contains 'reprint' %}
+	  	<i class="icon-text text-green">转</i>
+  	{% elsif post.icon contains 'origin' %}
+	  	<i class="icon-text text-red">原</i>
+  	{% endif %}
   </span>
 </div>
