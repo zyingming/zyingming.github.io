@@ -6,7 +6,7 @@
       <i class="fa fa-calendar" aria-hidden="true" style="margin-right: 5px"></i>
       <span class="font-normal">{{ post.date | date: "%b %-d, %Y" }}</span>
     </em>
-    <small class="m-t-xs left-20">
+    <small class="m-t-xs left-20"><i class="fa fa-tags right-5" aria-hidden="true"></i> 
       {% for post_tag in post.tags %}
         {{ post_tag }}
         {% unless forloop.last %}, {% endunless %}

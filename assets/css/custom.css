@@ -52,6 +52,17 @@
 }
 .icon-text {
   background: #fff;
+  font-style: normal;
+  border-radius: 50%;
+  background: #fff;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+span.fa-stack {
+  width: 1.7em;
+  height: 1.6em;
+  line-height: 1.6em;
 }
 
 .text-red {

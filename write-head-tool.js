@@ -11,6 +11,7 @@ let w_data = '---\r\n'+
 'date:   '+ moment(Date.now()).format('YYYY-MM-DD HH:mm:ss') +'\r\n'+
 'categories: javascript\r\n'+
 'tags: default tags\r\n'+
+'icon: original\r\n'+
 'author: "zyingming"\r\n'+
 '---';
 
