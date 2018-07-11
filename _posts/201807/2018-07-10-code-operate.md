@@ -2,8 +2,8 @@
 layout: post
 title:  "git命令，日常操作"
 date:   2018-07-11 16:05:05
-categories: javascript
-tags: operate
+categories: tool
+tag: operate
 tags: git sublime
 icon: original
 author: "zyingming"

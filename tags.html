@@ -3,12 +3,12 @@ layout: default
 title: Tags
 permalink: /tags/
 ---
-{% for tag in site.tags %}
+{% for tag in site.tag %}
   {% assign tag_name = tag | first %}
   <section class="panel panel-default portlet-item">
-    <header id="{{ site.tags }}" class="panel-heading"><strong>{{ site.tags }}</strong></header>
+    <header id="{{ tag_name }}" class="panel-heading"><strong>{{ tag_name | capitalize }}</strong></header>
     <section class="panel-body">
-      {% for post in site.tags[tag_name] %}
+      {% for post in site.tag[tag_name] %}
         {% include list_post.html %}
       {% endfor %}
     </section>
