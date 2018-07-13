@@ -153,4 +153,23 @@ span.fa-stack {
   margin-right: 10px;
 }
 
+.top-link-wrapper {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 999999;
+  display: block;
+  opacity: 1;
+}
+#topLink {
+  display: block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: url(/assets/images/scrollup.png) no-repeat center;
+  color: #29B4F0;
+}
+
 
