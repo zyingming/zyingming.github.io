@@ -13,6 +13,16 @@ tags: mac
 author: "author"
 ---
 ```
+## 大标题
+### 二级标题
+#### 三级标题
+- 三级小标题
+
+### 参考资料
+
+* [When To Use Single Table Inheritance vs Multiple Table Inheritance](https://medium.com/@User3141592/when-to-use-single-table-inheritance-vs-multiple-table-inheritance-db7e9733ae2e)
+* [Multiple table inheritance with ActiveRecord](http://hakunin.com/mti)
+
 
 - 文件夹格式 `201803`
 
@@ -54,20 +64,6 @@ concat: {
 }
 ```
 
-## 参考资料
-
-* [When To Use Single Table Inheritance vs Multiple Table Inheritance](https://medium.com/@User3141592/when-to-use-single-table-inheritance-vs-multiple-table-inheritance-db7e9733ae2e)
-* [Multiple table inheritance with ActiveRecord](http://hakunin.com/mti)
-
-## 表格
-
-| 数据类型 | 转换为 true 的值 | 转换为false的值 |
-| === | === | === |
-| Boolean | true | false |
-| String | 任何非空字符串 | ""(空字符串) |
-| Number | 任何非零数字值(包括无穷大) | 0和NaN |
-| Object | 任何对象 | null |
-| Undefined | n/a | undefined |
 
 
 ## Contact

@@ -8,15 +8,14 @@ marks: css, layout
 icon: read
 author: "zyingming"
 ---
-## Css世界读书笔记
-《Css 世界》是张鑫旭所写，书中讲述了平时自己只知其一不知其二的css特性，收获颇多，当作笔记特此记录。
+书中讲述了平时自己只知其一不知其二的css特性，收获颇多，当作笔记特此记录。
 
 ### 第二章
 - 多个ID选择器出现在不同的元素上，元素会都有效果。
 - `>` `~` `+` 适用于`ie7+`以上版本。
 - `<a><span>`等模拟的按钮按下效果，使用`a:active`进行定义时，各浏览器表现一致。但是当存在火狐浏览器中导致`:active`失效。适用`jQuery`监听`mousedown`事件也是如此。
 
-```js
+```javascript
 a.addEventListener("mousedown",function(e){e.preventDefault();})
 ```
 - `click`与`mousedown`不同，后者不需要抬起就会触发。
@@ -75,7 +74,7 @@ div {position:absolute;left:20px;right:20px}
 
 - 写一个满屏显示的背景图
 
-```javascript
+```html
 .box {
     width:100%;  // 多余
     height:100%; // 无效

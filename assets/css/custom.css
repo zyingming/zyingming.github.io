@@ -132,3 +132,25 @@ span.fa-stack {
 .post-sum table > thead th:last-child {
   border-right: none;
 }
+
+/* 自定义 */
+.me-github a {
+  color: #717171;
+  font-size: 13px;
+}
+.me-github a i.fa-fw{
+  font-size: 15px;
+  text-align: left;
+}
+/* .post-meta {
+  height: 20px;
+  line-height: 20px;
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 3px;
+  box-sizing: content-box;
+} */
+.post-meta span {
+  margin-right: 10px;
+}
+
+
