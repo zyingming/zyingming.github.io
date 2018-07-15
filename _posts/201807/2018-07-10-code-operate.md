@@ -29,3 +29,6 @@ author: "zyingming"
 - [廖雪峰Git教程](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001376951885068a0ac7d81c3a64912b35a59b58a1d926b000)
 
 ## `ctrl+f` 打开网页搜索
+
+## `sublime text3` 快捷键
+- `ctrl+b`在sublime中运行javascript脚本

@@ -196,7 +196,7 @@ text-justify: inter-ideograph;
     - 可制作`10px*10px`的半透明图片，采用`base64`，不支持`IE6/7`。
     - `IE6/7`可使用半透明滤镜，但是会出现子元素字体也变成透明的问题
 
-```javascript
+```html
 filter:alpha(opacity=50 finishopacity=50 style=0 startx=0,starty=5,finishx=0,finishy=0);
 background: #000;
 ```
@@ -212,7 +212,7 @@ background: #000;
 - `h3{标题}>a{更多}` 使用`float`使链接居右，在`IE8+`的浏览器中是可以的，但在`IE7`则，链接会浮动在标题下一行的右边
 - 内容居中的左中右布局
 
-```javascript
+```html
 //div.box>a.prev+a.next>h3.title
 .prev {
     float:left;
@@ -246,7 +246,7 @@ background: #000;
 - 普通流体元素在设置了`overflow:hidden`后，会自动填充容器中除了浮动元素以外的剩余空间，形成自适应布局效果。
 - `display:table-cell` 让元素表现的像单元格一样，IE8+支持。即使宽度设置的再大，实际宽度也不会超过表格容器的宽度。
 
-```javascript
+```html
 .bfc-content {
     width:999px;
     display: table-cell;
@@ -254,7 +254,7 @@ background: #000;
 ```
 - 适应`IE7+`浏览器的自适应解决方案。`IE7`下`inline-block`会被当做`block`
 
-```javascript
+```html
 .bfc-content{overflow:hidden}
 
 .bfc-content{
@@ -279,7 +279,7 @@ background: #000;
 
 - 滚动条自定义。IE自定义效果不佳，略过。
 
-```javascript
+```html
 ::-webkit-scrollbar { //血槽
     width: 8px;
     height:8px;
@@ -317,7 +317,7 @@ background: #000;
 
 - 应用：为了实现悬浮在删除图标时显示文字删除，常用`::before/::after`模拟小三角和矩形区，定位于图标，这时文字的宽度被图标宽度限制，就会出现断行的现象。
 
-```javascript
+```html
 .icon-del {
     display: inline-block;
     width: 20px;
@@ -376,7 +376,6 @@ background: #000;
 
 - 无依赖`absolute`定位
 
-![Alt Text](imgs/absolute.png)
 
 - 实现这种图片左上角的定位可直接
 
