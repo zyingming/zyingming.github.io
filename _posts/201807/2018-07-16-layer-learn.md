@@ -100,4 +100,4 @@ var ready = {
 
 ### 参考资料
 - [layer 源码](https://github.com/sentsin/layer)
-- [使用Document.scripts获取该<script>元素](http://keenwon.com/1250.html)
+- [Document.scripts获取该script元素](http://keenwon.com/1250.html)
