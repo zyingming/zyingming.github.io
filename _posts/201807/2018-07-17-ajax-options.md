@@ -9,7 +9,7 @@ icon: original
 author: "zyingming"
 ---
 
-页面中的`ajax`代码执行一次，但在`debug`面板看到相同的请求，均有状态码。用以检查请求是否是可靠安全的
+页面中的`ajax`代码执行一次，但在`debug`面板看到相同的请求，均有状态码。
 
 ![Alt text](/assets/images/pictures/2018-07/option.png "ajax option")
 
@@ -27,4 +27,4 @@ author: "zyingming"
 
 - `Content-Type`的类型必须是以下几种：`application/x-www-form-urlencoded`、`multipart/form-data`、`text/plain`
 
-由于自定义的请求头中携带了`token`，所以会发起嗅探，出现两次请求。
+由于自定义的请求头中携带了`token`，所以会发起嗅探，出现两次请求。用来检查请求是否是可靠安全的。

@@ -2,7 +2,7 @@
 layout: post
 title:  "layer源码阅读学习"
 date:   2018-07-16 17:12:00
-categories: javascript
+categories: code
 tags: 源码学习
 marks: layer, dialog, tips
 icon: original
