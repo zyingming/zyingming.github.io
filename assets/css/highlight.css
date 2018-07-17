@@ -85,7 +85,7 @@
 
 /* CSS for kramdown */
 .highlighter-rouge pre {
-  background: #141414;
+  background: #383838;
   color: #E6E1DC;
   padding: 10px 20px;
   counter-reset: line-numbering;
