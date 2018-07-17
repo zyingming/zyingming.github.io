@@ -24,6 +24,9 @@ author: "zyingming"
 
 ## 核心方法
 在`Layer`作用域链上增加`view、action`函数，在挂载到windows.layer的对象上增加`open、close`函数。感觉把`open、close`放到作用域链上也可以。
+
+![layer 结构](/assets/images/pictures/2018-07/layer_1.jpg)
+
 - `view` 
 渲染模板。使用index标记弹框，设置弹框class样式。创建基本的`title,button,shadow`
 - `action` :绑定按钮点击事件，遮罩关闭事件
