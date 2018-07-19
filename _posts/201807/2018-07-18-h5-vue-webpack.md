@@ -19,7 +19,7 @@ author: "zyingming"
 
 ![项目目录](/assets/images/pictures/2018-07/h5_vue_1.jpg)
 
-由于开发环境和生产环境下`webpack`配置相似，（可以增加生产环境和开发环境下的不同）所以分成三个文件来写，`webpack.common.js`存放公共的基础配置，`webpack.dev.js`存放开发环境下的配置，`webpack.build.js`存放生产环境下的配置。    </br>
+由于开发环境和生产环境下`webpack`配置相似，（可以增加生产环境和开发环境下的不同）所以分成三个文件来写，`webpack.common.js`存放公共的基础配置，`webpack.dev.js`存放开发环境下的配置，`webpack.build.js`存放生产环境下的配置。    <br />
 `--save-dev`会把依赖安装到`packjson`的`devDependencies`下，意思是在项目开发时需要但在项目部署打包时是不需要的。`--save`会把依赖安装到`packjson`的`dependencies`下，意思是项目运行所必须的。大概浏览一下项目完成时整个安装的全部依赖，如下图，接下来会一个个的安装。
 
 ![项目目录](/assets/images/pictures/2018-07/h5_vue_2.jpg)
@@ -51,7 +51,7 @@ publicPath: "/assets/",
 
 ### 5. 配置`module`
 - 对`.vue`结尾的文件使用`vue-loader`进行处理
-安装`vue-loader`，详细配置可见[vue-loader中文文档](https://vue-loader-v14.vuejs.org/zh-cn/configurations/pre-processors.html)，例子中配置了`extractCSS`提取`.vue`文件中的css到单个文件，这里还需要安装一个插件`mini-css-extract-plugin`类似于之前的`extract-text-webpack-plugin`，前者是依赖`webpack4`，后者依赖`webpack3`，在`webpack4`中使用后者也可以，需要安装`cnpm install extract-text-webpack-plugin@next`。   </br>
+安装`vue-loader`，详细配置可见[vue-loader中文文档](https://vue-loader-v14.vuejs.org/zh-cn/configurations/pre-processors.html)，例子中配置了`extractCSS`提取`.vue`文件中的css到单个文件，这里还需要安装一个插件`mini-css-extract-plugin`类似于之前的`extract-text-webpack-plugin`，前者是依赖`webpack4`，后者依赖`webpack3`，在`webpack4`中使用后者也可以，需要安装`cnpm install extract-text-webpack-plugin@next`。   <br />
 在`vue-loader15.*`之后需要使用插件`VueLoaderPlugin`，否则可能会出现[vue-loader was used without the corresponding plugin](#vue-loader-plugin)
 
 - 对`.js`结尾的文件使用`babel-loader`进行处理
@@ -239,9 +239,7 @@ module.exports = Merge(CommonConfig, {
 
 ![项目目录](/assets/images/pictures/2018-07/h5_vue_3.jpg)
 
-`Vue` 最早会打包生成三个文件，一个是 `runtime only` 的文件 `vue.common.js`，一个是 `compiler only` 的文件 `compiler.js`，一个是 `runtime + compiler` 的文件 `vue.js`。可以在截图中刚看到报错的是`vue.runtime.esm.js`，`import Vue form "vue"`引入的只是`vue.common.js`，真正的`"vue"`需要在`vue/dist/vue.esm.js`中引入
-
-[原文链接](https://segmentfault.com/a/1190000006435886)
+`Vue` 最早会打包生成三个文件，一个是 `runtime only` 的文件 `vue.common.js`，一个是 `compiler only` 的文件 `compiler.js`，一个是 `runtime + compiler` 的文件 `vue.js`。可以在截图中刚看到报错的是`vue.runtime.esm.js`，`import Vue form "vue"`引入的只是`vue.common.js`，真正的`"vue"`需要在`vue/dist/vue.esm.js`中引入。
 
 <span id="vue-loader-plugin"></span>
 ### 2.vue-loader was used without the corresponding plugin. Make sure to include VueLoaderPlugin in your webpack config.
@@ -251,8 +249,8 @@ module.exports = Merge(CommonConfig, {
 在页头引入`const VueLoaderPlugin = require('vue-loader/lib/plugin');`，在`plugins`中应用`new VueLoaderPlugin()`
 
 ## 结束
-至此就搭建成功了`webpack4+vue2`的配置环境，以前多次尝试总是会遇到各种问题失败告终，虽说遇事看文档，但是就好像告诉你自行车就是用脚蹬，说的再详细，上手还是一脸懵逼免不了摔跤。这次小小的成功也算是给自己的一个安慰(oﾟvﾟ)，这个还有一些问题，比如没有对css文件进行处理，`vendor.js`有`90k`（不知道是不是还有些操作不够优化），后续会继续添加修改。   </br>
-在下一篇文章中我会用搭建好的环境开发一个简单的h5demo，解决一些在移动端H5开发可能会遇到的问题。    </br>
+至此就搭建成功了`webpack4+vue2`的配置环境，以前多次尝试总是会遇到各种问题失败告终，虽说遇事看文档，但是就好像告诉你自行车就是用脚蹬，说的再详细，上手还是一脸懵逼免不了摔跤。这次小小的成功也算是给自己的一个安慰(oﾟvﾟ)，这个还有一些问题，比如没有对css文件进行处理，`vendor.js`有`90k`（不知道是不是还有些操作不够优化），后续会继续添加修改。   <br />
+在下一篇文章中我会用搭建好的环境开发一个简单的h5demo，解决一些在移动端H5开发可能会遇到的问题。    <br />
 读文档能感觉到`webpack4`使用起来更加简单，优化了很多默认配置，也比`webpack2`等容易理解，大神们已经出分析源码教程了，而我刚开始接触`vue`Σ( ° △ °|||)︴，还有`vuex`、`vue-touter`初级已经入门，接下来需要更加深入的了解一下了(ง •_•)ง
 
 ### 参考文档
@@ -262,3 +260,4 @@ module.exports = Merge(CommonConfig, {
 - [webpack4升级完全指南](https://www.colabug.com/2646738.html)
 - [如何写好.babelrc？Babel的presets和plugins配置解析](https://excaliburhan.com/post/babel-preset-and-plugins.html)
 - [babel-loader官网](http://babeljs.io/docs/en/babelrc)
+- [Vue 2.0 升（cai）级（keng）之旅](https://segmentfault.com/a/1190000006435886)
