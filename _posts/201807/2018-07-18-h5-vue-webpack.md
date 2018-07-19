@@ -50,7 +50,7 @@ publicPath: "/assets/",
 - `alias` 对象。别名，在引入模块时该别名可以简化引入路径，例子中引入模块就可以直接写为`import Head form @/Head`，这里需要对`vue.esm.js`配置一下精准别名，具体原因可参考文末[template compiler is no available](#vue-runtime.esm.js)
 
 ### 5. 配置`module`
-- 对`.vue`结尾的文件使用`vue-loader`进行处理
+- 对`.vue`结尾的文件使用`vue-loader`进行处理<br />
 安装`vue-loader`，详细配置可见[vue-loader中文文档](https://vue-loader-v14.vuejs.org/zh-cn/configurations/pre-processors.html)，例子中配置了`extractCSS`提取`.vue`文件中的css到单个文件，这里还需要安装一个插件`mini-css-extract-plugin`类似于之前的`extract-text-webpack-plugin`，前者是依赖`webpack4`，后者依赖`webpack3`，在`webpack4`中使用后者也可以，需要安装`cnpm install extract-text-webpack-plugin@next`。   <br />
 在`vue-loader15.*`之后需要使用插件`VueLoaderPlugin`，否则可能会出现[vue-loader was used without the corresponding plugin](#vue-loader-plugin)
 
@@ -251,7 +251,7 @@ module.exports = Merge(CommonConfig, {
 ## 结束
 至此就搭建成功了`webpack4+vue2`的配置环境，以前多次尝试总是会遇到各种问题失败告终，虽说遇事看文档，但是就好像告诉你自行车就是用脚蹬，说的再详细，上手还是一脸懵逼免不了摔跤。这次小小的成功也算是给自己的一个安慰(oﾟvﾟ)，这个还有一些问题，比如没有对css文件进行处理，`vendor.js`有`90k`（不知道是不是还有些操作不够优化），后续会继续添加修改。   <br />
 在下一篇文章中我会用搭建好的环境开发一个简单的h5demo，解决一些在移动端H5开发可能会遇到的问题。    <br />
-读文档能感觉到`webpack4`使用起来更加简单，优化了很多默认配置，也比`webpack2`等容易理解，大神们已经出分析源码教程了，而我刚开始接触`vue`Σ( ° △ °|||)︴，还有`vuex`、`vue-touter`初级已经入门，接下来需要更加深入的了解一下了(ง •_•)ง
+读文档能感觉到`webpack4`使用起来更加简单，优化了很多默认配置，也比`webpack2`等容易理解，大神们已经出分析源码教程了，而我刚开始接触`vue`Σ( ° △ °|||)︴，`vuex`、`vue-touter`已经初级入门，接下来需要更加深入的了解一下了(ง •_•)ง
 
 ### 参考文档
 - [webpack 中文文档](https://webpack.docschina.org/configuration/)
