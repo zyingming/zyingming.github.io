@@ -34,3 +34,14 @@ author: "zyingming"
 
 ## `sublime text3` 快捷键
 - `ctrl+b`在sublime中运行javascript脚本
+
+## 使用`webpack`查看生成在内存中的各资源地址
+在地址栏中输入：`http://localhost:8080/webpack-dev-server`
+
+## `jekyll`添加锚点，实现页内跳转
+- 添加一个空白节点
+```html
+<span id="vue-runtime.esm.js"></span>
+### 标题
+```
+- 使用时`[回到标题](#vue-runtime.esm.js)`
