@@ -3,7 +3,7 @@ const path = require('path');
 const readline = require('readline');
 let moment = require('moment');
 
-const _basePath = __dirname + '/_posts/';
+const _basePath = __dirname + '/_drafts/';
 
 let w_data = '---\r\n'+
 'layout: post\r\n'+

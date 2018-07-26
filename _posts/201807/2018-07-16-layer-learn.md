@@ -97,6 +97,18 @@ var ready = {
 ### 4. 小方法
 - `var titype = typeof config.title === 'object';`
 - `<span yes type="1">`
+- 检查ie的版本(我都是根据`Trident`)
+
+```javascript
+var version = {
+  ie: function() {
+    var agent = navigator.userAgent.toLowerCase();
+    return (!!window.ActiveXObject || "ActiveXObject" in window) ? (
+      (agent.match(/msie\s(\d+)/) || [])[1] || '11' //由于ie11并没有msie的标识
+    ) : false;
+  }()
+}
+```
 
 ### 参考资料
 - [layer 源码](https://github.com/sentsin/layer)

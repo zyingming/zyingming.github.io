@@ -19,5 +19,8 @@
   "homepage": "https://github.com/zyingming/zyingming.github.io#readme",
   "dependencies": {
     "moment": "^2.22.2"
+  },
+  "devDependencies": {
+    "moment": "^2.22.2"
   }
 }
