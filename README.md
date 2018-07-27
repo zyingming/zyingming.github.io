@@ -64,6 +64,12 @@ concat: {
 }
 ```
 
+- 表格
+
+标题1|标题2|标题3
+---|:--:|---:
+内容|内容|内容
+
 
 
 ## Contact
@@ -71,6 +77,5 @@ concat: {
 * themeUrl: https://github.com/wjp2013/wjp2013.github.io
 * e-mail: 2570332082@qq.com
 * Twitter: [@zyingming](https://github.com/zyingming)
-
 
 
