@@ -75,7 +75,5 @@ concat: {
 ## Contact
 
 * themeUrl: https://github.com/wjp2013/wjp2013.github.io
-* e-mail: 2570332082@qq.com
-* Twitter: [@zyingming](https://github.com/zyingming)
 
 

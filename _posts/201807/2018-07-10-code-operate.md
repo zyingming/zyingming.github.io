@@ -41,14 +41,24 @@ author: "zyingming"
 ## `jekyll` 小功能
 ### 1. 添加锚点，实现页内跳转
 - 添加一个空白节点
+
 ```html
 <span id="vue-runtime.esm.js"></span>
 ### 标题
 ```
+
 - 使用时`[回到标题](#vue-runtime.esm.js)`
 
 ### 2. 换行
 使用的是换行标签`<br />`，不过需要在换行标签前加三个以上空格，换行方能生效。
+
+## 使用`weinre`调试移动端页面
+```javascript
+weinre --httpPort 8086 --boundHost -all-
+```
+
+
+
 
 ### 参考资料
 - [基于Jekyll的GitHub建站指南](http://qianjiye.de/2012/07/host-your-pages-at-github-using-jekyll#jekyll-and-github)
