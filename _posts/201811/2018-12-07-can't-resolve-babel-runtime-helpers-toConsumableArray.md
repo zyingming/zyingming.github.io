@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Module not found: Error: Can't resolve '@babel/runtime/helpers/toConsumableArray'"
+title:  "Can't resolve '@babel/runtime/helpers/toConsumableArray'"
 date:   2018-12-07 14:46:41
 categories: javascript
 tags: javascript
