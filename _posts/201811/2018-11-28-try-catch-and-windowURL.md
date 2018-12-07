@@ -4,7 +4,7 @@ title:  "合理的使用try-catch以及对象URL"
 date:   2018-11-28 11:25:16
 categories: javascript
 tags: javascript
-marks: tag
+marks: javascript
 icon: original
 author: "zyingming"
 ---
