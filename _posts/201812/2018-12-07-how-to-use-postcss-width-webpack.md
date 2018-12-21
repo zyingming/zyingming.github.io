@@ -53,7 +53,7 @@ module.exports = {
 
 ### 4.上面用到的插件，都需要`npm install --save-dev`进行安装
 
-至此就可以在`webpack`中使用`postcss`进行编码了，帮助开发完成一些重复性劳作，之前的适配方案是采用的淘宝`flexable`，虽然可以完成适配但是存在一些显而易见的缺点，比如字体大小不能使用`rem`单位，需要根据dpr写两次。而且安卓的高分辨率也会被直接当成dpr=1进行计算，不太合理。
+至此就可以在`webpack`中使用`postcss`进行编码了，帮助开发完成一些重复性劳作，之前的适配方案是采用的淘宝`flexable`，虽然可以完成适配但是存在一些显而易见的缺点，比如安卓的高分辨率也会被直接当成dpr=1进行计算，不太合理。
 
 ### 参考资料
 - ![postcss插件列表](https://github.com/postcss/postcss/blob/master/docs/plugins.md)
