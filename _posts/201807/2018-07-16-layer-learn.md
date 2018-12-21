@@ -2,10 +2,10 @@
 layout: post
 title:  "layer源码阅读学习"
 date:   2018-07-16 17:12:00
-categories: code
+categories: javascript
 tags: 源码学习
 marks: layer, dialog, tips
-icon: original
+icon: read
 author: "zyingming"
 ---
 
