@@ -2,8 +2,8 @@
 layout: post
 title:  "使用postcss进行rem布局完成移动端适配"
 date:   2018-12-07 14:59:43
-categories: javascript
-tags: javascript
+categories: webpack
+tags: webpack
 marks: postcss,webpack
 icon: original
 author: "zyingming"

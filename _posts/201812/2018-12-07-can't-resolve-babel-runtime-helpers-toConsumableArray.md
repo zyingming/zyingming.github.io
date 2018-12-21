@@ -2,8 +2,8 @@
 layout: post
 title:  "Can't resolve '@babel/runtime/helpers/toConsumableArray'"
 date:   2018-12-07 14:46:41
-categories: javascript
-tags: javascript
+categories: webpack
+tags: webpack
 marks: webpack,babel7
 icon: original
 author: "zyingming"

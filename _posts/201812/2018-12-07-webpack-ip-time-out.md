@@ -2,7 +2,7 @@
 layout: post
 title:  "webpack-dev-server编译成功，但是打不开页面"
 date:   2018-12-07 14:20:07
-categories: javascript
+categories: webpack
 tags: javascript
 marks: webpack,es6 
 icon: original
