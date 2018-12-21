@@ -56,5 +56,5 @@ module.exports = {
 至此就可以在`webpack`中使用`postcss`进行编码了，帮助开发完成一些重复性劳作，之前的适配方案是采用的淘宝`flexable`，虽然可以完成适配但是存在一些显而易见的缺点，比如安卓的高分辨率也会被直接当成dpr=1进行计算，不太合理。
 
 ### 参考资料
-- ![postcss插件列表](https://github.com/postcss/postcss/blob/master/docs/plugins.md)
-- ![postcss介绍](https://github.com/postcss/postcss/blob/HEAD/README-cn.md)
+- [postcss插件列表](https://github.com/postcss/postcss/blob/master/docs/plugins.md)
+- [postcss介绍](https://github.com/postcss/postcss/blob/HEAD/README-cn.md)
