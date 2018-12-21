@@ -2,7 +2,7 @@
 layout: post
 title:  "日历组件v-calendar使用babel7转义之后缺少intl"
 date:   2018-11-28 16:07:31
-categories: reactAndVue
+categories: vue
 tags: javascript
 marks: babel7,es6,v-calendar
 icon: original

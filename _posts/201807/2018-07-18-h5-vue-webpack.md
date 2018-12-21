@@ -2,7 +2,7 @@
 layout: post
 title:  "使用vue2+webpack4搭建h5页面(未完)"
 date:   2018-07-19 09:31:55
-categories: reactAndVue
+categories: vue
 tags: vue webpack
 marks: vue2, h5, webpack4
 icon: original
