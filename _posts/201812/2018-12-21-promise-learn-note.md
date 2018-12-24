@@ -4,10 +4,11 @@ title:  "promise学习笔记"
 date:   2018-12-21 16:17:14
 categories: es6
 tags: es6
-marks: es6,promise,ajax
+marks: es6
 icon: read
 author: "zyingming"
 ---
+
 原博文：https://github.com/xieranmaya/blog/issues/3
 
 ### 特点
