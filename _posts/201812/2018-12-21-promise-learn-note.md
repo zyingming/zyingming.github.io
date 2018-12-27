@@ -14,10 +14,10 @@ author: "zyingming"
 ### 特点
 `promise`对象有三种状态：`pending进行中`、`fulfilled已成功`、`rejeced已失败`。并且一旦状态改变，任何时候都可以得到这个结果，所以当**改变发生之后添加回调函数也可以得到正确结果**。无法取消`promise`一旦执行无法中途取消，如果不设置回调函数，`promise`内部抛出的错误，不会反应到外部。
 ### 用法
-1.`promise`构造函数接受一个函数作为参数，该函数的两个参数分别是`resolve`和`reject`，在异步操作成功时调用`resolve`将异步操作的结果作为参数传递出去。在异步调用失败的时候`reject`将报错信息传递出去。
-2.`promise`实例生成后，可以使用`.then(resolve回调,reject回调)`方法，异步操作成功的结果会作为`resolve回调`的参数。**`then`方法会在当前脚本所有的同步任务执行完之后才会执行**。但是推荐做法是在`.then()`之后**调用`.catch()`方法捕获错误**，而不是使用`then`方法的第二个函数。
-3.调用完`resolve()`，后面的代码还是会执行，并不会退出`promise`，如果想在执行完`reject/resolve`之后退出`promise`，可以在`resolve`之前加上`return`语句。
-4.`.then`方法，用来注册`PromiseA`状态确定后的回调，会返回一个**新的Promise对象**，并不是返回`this`，`then`每次返回的`Promise`的结果都有可能不同。`then`的两个函数参数需要**异步调用**，使用`setTimeout(fn,0)`。
+- `promise`构造函数接受一个函数作为参数，该函数的两个参数分别是`resolve`和`reject`，在异步操作成功时调用`resolve`将异步操作的结果作为参数传递出去。在异步调用失败的时候`reject`将报错信息传递出去。
+- `promise`实例生成后，可以使用`.then(resolve回调,reject回调)`方法，异步操作成功的结果会作为`resolve回调`的参数。**`then`方法会在当前脚本所有的同步任务执行完之后才会执行**。但是推荐做法是在`.then()`之后**调用`.catch()`方法捕获错误**，而不是使用`then`方法的第二个函数。
+- 调用完`resolve()`，后面的代码还是会执行，并不会退出`promise`，如果想在执行完`reject/resolve`之后退出`promise`，可以在`resolve`之前加上`return`语句。
+- `.then`方法，用来注册`PromiseA`状态确定后的回调，会返回一个**新的Promise对象**，并不是返回`this`，`then`每次返回的`Promise`的结果都有可能不同。`then`的两个函数参数需要**异步调用**，使用`setTimeout(fn,0)`。
 ### 可能出现的延迟问题
 通过`setTimeout(fn,0)`实现`then函数的异步调用时`，参数函数放置到**任务队列中**，在`Event Loop`中去调用，浏览器两次`Event Loop`之间的时间间隔约是**4ms**，这就会有个极端情况，如果有20个promise链式调用，加上代码运行时间，从链式调用的第一行代码到最后一行可能会超过100ms，**如果在此之间没有更新UI的操作的话**，可能会造成一定的卡顿或者闪烁。
 ### 停止一个promise链

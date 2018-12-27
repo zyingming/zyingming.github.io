@@ -1,24 +1,16 @@
 ---
 layout: post
-title:  "canvas-some-question"
-date:   2018-11-28 16:50:15
+title:  "es6完成一个canvas小游戏-见缝插针"
+date:   2018-12-25 15:46:45
 categories: javascript
 tags: javascript
 marks: tag
-icon: translate
+icon: original
 author: "zyingming"
 ---
+
 ### 1.canvas画出来的图形是锯齿
 canvas的宽度与高度必须作为属性明确指定（也不能通过CSS设置），并且只能是数字，不支持百分比。基于以上的规则，所以很容易找到症结，canvas绘制的图片本来较小，但经过CSS强行放大拉伸，所以就会出现模糊、锯齿严重的效果。
-
-### 2.绘制图形填充颜色时，颜色的设置`fillStyle`要放在绘制之前。
-
-### 3.单例模式
-两个类实例化的时间几乎同步，constructor中实例化单例模式时可能会获取不到其他类动态添加的属性，比如A和B，new A的同时，new B，之后再添加B.b = 1;在A中引入的B可能获取不到b属性
-
 ### 4.监控动画，分析性能
 
 https://github.com/mrdoob/stats.js
-
-
-
