@@ -14,6 +14,7 @@ author: "zyingming"
 - `reducer`：一个决定每一个`action`如何修改应用的`state`的纯函数，可以查看之前的状态，执行一个action并且返回一个新的状态，第一个参数`state`是当前保存在`store`中的数据，第二个参数`action`。
 - `action`: 更新组件触发的行为，一个对象其中必选`type`属性描述操作行为，可选`payload`属性存放用于更新状态的数据。
 - `applyMiddleware``是Redux`的原生方法，作用是将所有中间件组成一个数组，依次执行。
+- `connect`是`react-redux`的函数，用于连接`react`组件和`redux store`。
 ### 基本概念
 在React中所有组件的状态`state`都被保存在`store`对象树中，推荐的做法是一个应用只有一个`store`和一个`root reducer`，`root reducer`像组件一样被分成更小的`reducer`去管理独自的`state`。当一个`store`触发`dispatch`一个`action`，它将把这个`action`代理给相关的`reducer`，由`reducer`决定如何修改`state`。
 
@@ -38,6 +39,17 @@ export default connect(
 )(Form.create()(Login))
 ```
 
+- `provider`是`react-redux`原生实现的，用于嵌套任何被`connect`包裹的组件，没有`provider`包裹是不能使用一个被连接后的组件的，所以通常会用`Provider`包裹着整个`APP`组件。方便获取`Store`。
+
+```javascript
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+
 - `this.props.superLogin`是一个`actions.superLogin(data)`执行后返回的`promise`，如果想在`Action`中使用异步函数需要添加`redux-chunck`，否则会报错`Use custom middleware for async actions`，如图：
 ![](/assets/images/pictures/2018-12/redux.jpg)
 中间件`redux-thunk`对`store.dispatch`进行了增强，使用`applyMiddleware`将`thunk`包装进`createStore`里，就可以使用异步`action`。
@@ -53,7 +65,7 @@ const store = createStore(
 	applyMiddleware(thunk)
 );
 ```
-### `Provider`
+
 ### 学习资料
 - [redux 源文档](https://redux.js.org/introduction/getting-started)
 - [react-redux 源文档](https://react-redux.js.org/introduction/quick-start)
