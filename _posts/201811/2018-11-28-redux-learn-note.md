@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "通过todo-list例子学习redux"
+title:  "学习redux学习笔记"
 date:   2018-11-28 16:50:15
 categories: react
 tags: react
