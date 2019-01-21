@@ -16,7 +16,7 @@ author: "zyingming"
 - `applyMiddleware``是Redux`的原生方法，作用是将所有中间件组成一个数组，依次执行。
 - `connect`是`react-redux`的函数，用于连接`react`组件和`redux store`。
 ### 基本概念
-在React中所有组件的状态`state`都被保存在`store`对象树中，推荐的做法是一个应用只有一个`store`和一个`root reducer`，`root reducer`像组件一样被分成更小的`reducer`去管理独自的`state`。当一个`store`触发`dispatch`一个`action`，它将把这个`action`代理给相关的`reducer`，由`reducer`决定如何修改`state`。
+在React中所有组件的状态`state`都被保存在`store`对象树中，推荐的做法是一个应用只有一个`store`和一个`root reducer`，`root reducer`像组件一样被分成更小的`reducer`去管理独自的`state`。当一个`store``dispatch`一个`action`，它将把这个`action`代理给相关的`reducer`，由`reducer`决定如何修改`state`。
 
 ### 基本用法
 - 在react中使用`redux`需要配合`react-redux`，`react-redux`提供了`connect`连接组件和`store`，将`dispatch、state`映射到`props`上，在组件中就可以使用`this.props.dispatch`。
