@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "实现点击高亮的旭日图与动效边框"
+title:  "实现点击高亮的旭日图"
 date:   2019-03-05 10:20:12
 categories: react
 tags: react
@@ -112,7 +112,7 @@ this.charts.on('click', "series.sunburst", (params) => {
         this.currentId = targetId;
     }else {
         // 取消高亮数据
-        this.charts.setOption(options);
+        this.charts.setOption(defaultOptions);
 
         this.currentId = null;
     }
