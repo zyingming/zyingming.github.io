@@ -88,5 +88,3 @@ console.log(formData.get('file'), 'data')
 ![](/assets/images/pictures/2019-01/ip.jpg)
 
 没写对或者少写了`http://`就会出现这种情况。
-
-### 翻译redux一篇文章

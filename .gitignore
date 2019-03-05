@@ -6,6 +6,6 @@ _site
 .sass-cache
 .jekyll-metadata
 node_modules/
-project.md
+project/
 Gemfile.lock
 .npmignore
