@@ -88,3 +88,9 @@ console.log(formData.get('file'), 'data')
 ![](/assets/images/pictures/2019-01/ip.jpg)
 
 没写对或者少写了`http://`就会出现这种情况。
+
+### 数字过多不能自动换行
+
+![](/assets/images/pictures/2019-01/wrap.jpg)
+
+纯数字或者纯字母加上`word-wrap:break-word;`就可以超出宽度时自动换行
