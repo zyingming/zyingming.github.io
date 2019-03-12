@@ -42,9 +42,66 @@ var element = {
 }
 
 ```
+使用`element`对象构造出一个`DOM`树，创建节点，设置属性，创建子节点，插入节点中返回。
+
+```javacsript
+var ul = element('ul', {id: 'list',key:0}, [
+  element('li', {class: 'item',key:0}, ['Item 1']),
+  element('li', {class: 'item',key:1}, ['Item 2']),
+  element('li', {class: 'item',key:2}, ['Item 3'])
+])
+export function element(tagName, props, children) {
+	if(!(this instanceof element)) {
+		return new element(tagName, props, children)
+	}
+	this.tagName = tagName;
+	this.props = props||{};
+	this.children = children || [];
+}
+
+element.prototype.render = function (){
+    // 创建节点
+	var el = document.createElement(this.tagName);
+	var props = this.props;
+
+	for(var propName in props) {
+    // 设置节点属性
+		_setAttribute(el, propName, props[propName])
+	}
+
+	var children = this.children;
+    // 创建子节点并插入
+	children.forEach(function(child, index) {
+		var childEl = (child instanceof element) ? child.render() : document.createTextNode(child + '');
+		el.appendChild(childEl);
+	})
+	return el;
+}
+
+
+```
+
+### 对比差异 diff算法
+
 这样当状态变更时需要重新渲染整个`javascript`对象结构，用新渲染的对象树和旧树进行对比，记录两棵树的差异，并把差异更新在真正的`DOM树`上，这样视图结构确实是整个全新渲染了，但是操作DOM的只有变更的那些地方。对于开发者来说可以不用关心将这些差异一个个去更新DOM，双向引擎会自动更新批量视图。<br />   
+差异算法涉及到字符串的最小编辑距离问题Edition Distance，文中作者提到最常见的解决算法`Levenshtein Distance`，时间复杂度为O(M*N)，这里我们可以牺牲一定`DOM操作`让时间复杂度达到线性的O(max(M, N)，[源码](https://github.com/livoras/list-diff/blob/master/lib/diff.js)。<br />
+ 
+例如：`a b c d e  => c a b e f`，对与旧list的操作可以分四步：
+- 操作index=3,删除。删除d
+- 操作index=0,插入c
+- 操作index=3,现在是c，删除c
+- 操作index=4,删除。删除f
+移动`move`可以看成是`移动+删除`，文中作者用的是`list-diff2`。
+
+```javascript
+
+```
+
+### 应用差异patch
+将步骤2得到的差异应用到真实的DOM树中，绘制出新视图。
 
 
-### 参考文章
+
+### 原文及源码
 - [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 - [我对Backbone.js的一些认识](https://www.cnblogs.com/lyzg/p/5634565.html)

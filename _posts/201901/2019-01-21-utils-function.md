@@ -25,6 +25,12 @@ function isDate(val) {
 function isFile(val) {
 	return toString.call(val) === '[object File]';
 }
+function isTrue(val) {
+    return !!val;
+}
+function _slice(arrayLike, index) {
+    return Array.prototype.slice.call(arrayLike, index)
+}
 ```
 - 使用`instanceof`判断`FormData`
 
@@ -117,3 +123,40 @@ function deepMerge() {
 
 ```
 
+### 参数转换成数组
+
+```javascript
+// false、undefined 会转换成[]
+// true 会转换成[true]
+if(children !== null && !isArray(children)) {
+	var children = _slice(arguments, 2).filter(isTrue);
+}
+```
+直接写成`children&&!isArray(children)`则会过滤掉`false、undefined`不会被初始化成空数组。
+
+### 设置节点属性及创建文本节点
+
+```javascript
+// 设置style
+node.style.cssText = value;
+// 设置attribute
+node.setAttribute(key, vlaue);
+// 创建文本节点
+document.createTextNode(value)；
+// 创建节点
+document.createElement(tagName);
+```
+
+### 省略一个参数
+当参数1是必填，参数2是对象非必填，参数3是数组非必填时，如果想省略参数2，直接写参数3，可以在函数里做些准备操作，**判断是数组就赋值给参数2**
+
+### `void 0`与`undefined`
+虽然`void`的返回值就是`undefined`，但是用`void 0`代替`undefined`也是有一定作用的。
+- 防止重写。在`es5`以前某些浏览器下`undefined`是可以被重写的，如下：
+
+```javascript
+undefined = 1;
+console.log(!!undefined);// true
+```
+在`es5`之后的标准中规定了严格模式中全局变量的`undefined`为只读，不可改写。
+- 减少字节。`void 0`代替`undefined`省3个字节。

@@ -93,4 +93,5 @@ console.log(formData.get('file'), 'data')
 
 ![](/assets/images/pictures/2019-01/wrap.jpg)
 
-纯数字或者纯字母加上`word-wrap:break-word;`就可以超出宽度时自动换行
+纯数字或者纯字母加上`word-wrap:break-word;`就可以超出宽度时自动换行。记得自己之前碰到过这个问题，由于没有啥内容都是数字或者字母的，就很容易出现这种清空。(没记性)
+
