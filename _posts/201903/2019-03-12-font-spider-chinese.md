@@ -19,7 +19,7 @@ author: "zyingming"
 > 需要写正确路径，否则会报错webFont is not found
 
 
-- 配合`gulp`
+- 配合`gulp`安装插件`gulp-font-spider`
 
 引入`var fontSpider = require( 'gulp-font-spider' );`，可以放在编译的时候进行提取，也可以在`html`改变时进行提取
 
