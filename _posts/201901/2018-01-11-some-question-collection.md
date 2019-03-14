@@ -95,3 +95,36 @@ console.log(formData.get('file'), 'data')
 
 纯数字或者纯字母加上`word-wrap:break-word;`就可以超出宽度时自动换行。记得自己之前碰到过这个问题，由于没有啥内容都是数字或者字母的，就很容易出现这种清空。(没记性)
 
+
+### 打印DOM节点
+有一个DOM节点`var node = document.createElement('div')`在浏览器中打印DOM节点是直接输出`console.log(node)`时，会显示`<div></div>`，如果你期望输出一些节点属性就要自己遍历输出，
+可以看到一些常用的属性，如下：
+
+```javascript
+var str = ''
+for(var key in node) {
+    str = str + key + '';
+}
+console.log(str)
+```
+![](/assets/images/pictures/2019-03/dom.jpg)
+
+### 数组作为参数传递
+数组并不是作为形参进行传递，在`testB`里修改也会影响到`testA`
+```javascript
+function testA() {
+	var index = [{type:1}];
+	var text = 0;
+	testB(index);
+	console.log(index)  // []
+}
+function testB(index){
+	index.shift()
+}
+```
+
+### 循环里调用函数顺序
+```javascript
+function test(index) {
+
+```

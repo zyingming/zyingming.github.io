@@ -9,6 +9,10 @@ icon: read
 author: "zyingming"
 ---
 使用`jQuery`、`原生js`之后就会觉得现在流行的`MVVC`框架是多么的便捷，`MVVC`模式是在模版中声明视图组件是和什么状态进行绑定的，双向绑定引擎就会在状态更新的时候自动更新视图。这样将视图与数据状态进行绑定，大大降低视图更新的操作。在[github](https://github.com/livoras/blog/issues/13)上看到一篇文章，记录一下自己的理解。
+
+### 原文及源码
+[深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
+
 ### 原理
 当状态发生变化，就是用模板引擎重新渲染整个视图，然后用新的视图替换掉旧的视图(innerHTML)。虽然存在因为一个小小的状态就要重新构造整个DOM，性价比太低；`Input`、`textarea`会失去原有的焦点的问题，对于局部的小视图更新，是没有问题的（Backbone）。但对于大型视图，如全局应用状态变更时，需要更新页面较多局部视图的时候，这种做法不可取，而`Virtual DOM`加了一些特别的步骤来避免整个`DOM树`变更。<br />   
 
@@ -42,13 +46,15 @@ var element = {
 }
 
 ```
-使用`element`对象构造出一个`DOM`树，创建节点，设置属性，创建子节点，插入节点中返回。
+使用`element`对象构造出一个`DOM`树，创建节点，设置属性，创建子节点，插入节点中返回。并且需要统计节点的子节点数，例如父节点`li`下有一个文本节点，则`li.count=1`，`li`下没有子节点`li.count = 0`
+
+> 注意嵌套函数的执行顺序是从**最里层**开始的，例子中是先执行`el(li)`，执行完再执行上一层
 
 ```javacsript
-var ul = element('ul', {id: 'list',key:0}, [
-  element('li', {class: 'item',key:0}, ['Item 1']),
-  element('li', {class: 'item',key:1}, ['Item 2']),
-  element('li', {class: 'item',key:2}, ['Item 3'])
+var tree = el('div', {'id': 'container2'}, [
+    el('h1', {style: 'color: blue'}, ['simple virtal dom']),
+    el('p', ['Hello, virtual-dom']),
+    el('ul', [el('li',['test3']),el('li',['test2'])])
 ])
 export function element(tagName, props, children) {
 	if(!(this instanceof element)) {
@@ -57,6 +63,19 @@ export function element(tagName, props, children) {
 	this.tagName = tagName;
 	this.props = props||{};
 	this.children = children || [];
+
+    var count = 0;   // 子节点数
+    _each(this.children, function(child, i) {
+        if (child instanceof element) {
+        	// element节点+1
+            count += child.count;
+        } else {
+            children[i] = '' + child
+        }
+        count++;//文本节点
+    })
+    // this指的是elelment初始化的父节点
+    this.count = count;
 }
 
 element.prototype.render = function (){
@@ -91,17 +110,111 @@ element.prototype.render = function (){
 - 操作index=0,插入c
 - 操作index=3,现在是c，删除c
 - 操作index=4,删除。删除f
-移动`move`可以看成是`移动+删除`，文中作者用的是`list-diff2`。
+移动`move`可以看成是`移动+删除`，文中作者用的是`list-diff2`。<br />
+在`patch`中定义一些操作变量，`type=0`时是替换，`type=1`是移动，`type=2`时是属性变化，`type=3`时是文本变化，然后节点对节点的进比较：
+- 新节点是否存在
+- 是文本节点时，是否相等
+- 节点名称和`key`相等时，比较节点属性与子节点
+- 节点名称不相等时，替换旧节点
 
 ```javascript
+function dfsWalk(oldNode, newNode, index, patches) {
+	var currentPatch = [];
+	// 新节点不存在
+	if(newNode === null) {
+	// 文本节点
+	}else if(isString(oldNode) && isString(newNode)) {
+		if(oldNode !== newNode) {
+			currentPatch.push({type: patch.TEXT, content: newNode})
+		}
+	// 节点名称和key相同 比较节点属性及子节点
+	// 需要比较key相同才能确定是同一个元素
+	}else if(oldNode.tagName === newNode.tagName && oldNode.key === newNode.key) {
+		var propsPatch = diffProps(oldNode.props, newNode.props);
 
+		if(propsPatch) {
+			currentPatch.push({type: patch.PROPS, props: propsPatch})
+		}
+
+		diffChildren(oldNode.children, newNode.children, index, patches, currentPatch);
+
+	}else {
+		// 节点名称不相同，新节点替换旧节点
+		currentPatch.push({type: patch.REPLACE, node: newNode})
+	}
+	if(currentPatch.length) {
+		patches[index] = currentPatch;
+	}
+}
 ```
+
+并将差异存放在`patches={0:[]}`里，其中`0`是节点索引，在循环查询节点及子节点时需要根据各自的节点索引记录差异。索引的计算原理就是同一个父节点（同在一个循环里）的索引=当前索引+左兄弟节点count（兄弟节点的子节点数）+ 1；
+
+> 子节点是否有移动变化是算在父节点里的，比如`ul`下的`li`进行了排序，则将变化存在`ul`里
+
+```javascript
+function diffChildren(oldChildren, newChildren, index, patches, currentPatch) {
+    var diffs = listDiff(oldChildren, newChildren, 'key')
+    newChildren = diffs.children
+
+    if (diffs.moves.length) {
+        var reorderPatch = { type: patch.REORDER, moves: diffs.moves }
+        // 会修改dfsWalk里的currentPatch
+        currentPatch.push(reorderPatch)
+    }
+
+    // 索引数：div -> 0 , h1 -> 1 , 'simple virtal dom' -> 2
+    // p -> 1 + 1 + 1 = 3 , 'Hello, virtual-dom' -> 3 + 1 = 4
+    // ul -> 3 + 1 + 1 = 5, li -> 5+1=6, 'test3' -> 6+1=7, li -> 6+1+1=8, 'test2' -> 9
+    var leftNode = null
+    var currentNodeIndex = index; // 记录当前节点索引
+    _each(oldChildren, function(child, i) {
+        var newChild = newChildren[i]
+        currentNodeIndex = (leftNode && leftNode.count) ?
+            currentNodeIndex + leftNode.count + 1 :
+            currentNodeIndex + 1
+        dfsWalk(child, newChild, currentNodeIndex, patches)
+        leftNode = child
+    })
+}
+```
+
+> 循环里的函数嵌套，注意`oldChildren[0]`下所有子节点、子子节点...执行完毕之后，才开始循环`oldChildren[1]`。
 
 ### 应用差异patch
 将步骤2得到的差异应用到真实的DOM树中，绘制出新视图。
 
+```javascript
 
+function applyPatches(node, currentPatches) {
+    _each(currentPatches, function(currentPatch) {
 
-### 原文及源码
-- [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
+        switch (currentPatch.type) {
+            case REPLACE:
+                var newNode = (typeof currentPatch.node === 'string') ?
+                    document.createTextNode(currentPatch.node) :
+                    currentPatch.node.render()
+                node.parentNode.replaceChild(newNode, node)
+                break
+            case REORDER:
+                reorderChildren(node, currentPatch.moves)
+                break
+            case PROPS:
+                setProps(node, currentPatch.props)
+                break
+            case TEXT:
+                if (node.textContent) {
+                    node.textContent = currentPatch.content
+                } else {
+                    node.nodeValue = currentPatch.content
+                }
+                break
+            default:
+                throw new Error('Unknown patch type ' + currentPatch.type)
+        }
+    })
+}
+```
+文中的代码看着都很费劲，想要自己也能写出来真的需要很牢固的基础，文中用到了很多循环函数嵌套，来完成一层一层的节点遍历，以及操作DOM的一些原生操作，让自己学到了很多，也解开了虚拟DOM神秘的面纱，虚拟DOM不是深不可测的算法，而是一行行逻辑代码可以完成的。还有更多深层的含义需要慢慢学习。
+
 - [我对Backbone.js的一些认识](https://www.cnblogs.com/lyzg/p/5634565.html)
