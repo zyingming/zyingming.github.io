@@ -97,7 +97,6 @@ element.prototype.render = function (){
 	return el;
 }
 
-
 ```
 
 ### 对比差异 diff算法
