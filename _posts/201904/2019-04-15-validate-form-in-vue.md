@@ -15,12 +15,12 @@ author: "zyingming"
 
 ![form](/assets/images/pictures/2019-04/form_1.gif)
 
-使用方式就是在提交时获取表单引用，校验存在表单里，通过调用表单的`validate()`方法，在表单里校验。表单接收两个属性：
+使用方式就是在提交时获取表单引用，在表单里校验，通过在表单的`validate()`方法对整体`model`进行校验。表单接收两个属性：
 - `model`存放表单数据
-- `rule`存放校验规则，此规则会传递给[async-validator](https://github.com/yiminghe/async-validator)对`model`进行校验。
+- `rule`存放校验规则，此规则会传递给`async-validator`对`model`进行校验。
 我简单地加了一个新增表单项的功能，对于复杂对象进行深度校验时`rule`规则的写法可以查询[async-validator](https://github.com/yiminghe/async-validator)，例如下文的`list`，每次新增一项时规则便要增加一项，并且遍历显示列表名称和列表值时只能用`template`，而不能用其他`div`等其他`dom`节点，原因下面会有解释。
 
-```
+```javascript
 <template>
 	<div class="test-container">
 		<t-form ref="loginForm" :model="loginInfo" :rule="loginRule">
@@ -105,7 +105,7 @@ export default {
 #### Form组件
 由于校验是放在`Form`中完成的，所以`Form`就要先获取每个表单项`FormItem`，在挂载和更新的`hook`里获取更新`this.FormItems`，每个表单项接受的`prop`便能在这里拿到了，作为`key`去对应`errors`的错误信息，调用表单项的`showError`进行错误信息的显示。(把文章的代码贴了过来方便直接看)
 
-```
+```javascript
 <template>
 	<div class="form-container">
 		<slot></slot>
@@ -188,7 +188,73 @@ export default {
 
 ![form](/assets/images/pictures/2019-04/form_2.gif)
 
-
+```javascript
+<template>
+	<div class="test-container">
+		<t-form ref="loginForm" :model="loginInfo">
+			<t-form-item label="邮箱" prop="email" :rule="loginRule.email">
+				<t-input placeholder="Email" v-model="loginInfo.email"/>
+			</t-form-item>
+			<t-form-item label="密码" prop="password" :rule="loginRule.password" >
+				<t-input placeholder="password" v-model="loginInfo.password"/>
+			</t-form-item>
+			<template v-for="(item,index) in loginInfo.list">
+				<t-form-item label="列表名称" :prop="'list.'+index+'.name'" :rule="loginRule.name">
+					<t-input placeholder="输入名称" v-model="item.name" />
+				</t-form-item>
+				<t-form-item label="列表值" :prop="'list.'+index+'.value'" :rule="loginRule.value">
+					<t-input placeholder="输入数值" v-model="item.value" />
+				</t-form-item>
+			</template>
+		</t-form>
+		<span class="btn btn-primary" @click="handleAdd">新增</span>
+		<span class="btn btn-default" @click="handleSubmit">提交</span>
+	</div>
+</template>
+<script>
+import TForm from './TForm';
+import TFormItem from './TFormItem';
+import TInput from './TInput';
+export default {
+	name: 'testPage',
+	components: {
+		TForm,
+		TFormItem,
+		TInput
+	},
+	data() {
+		return {
+			loginInfo: {
+				email: "",
+                password: "",
+                list: []
+			},
+			loginRule: {
+                email: [
+                    {required: true, message: '邮箱不能为空', trigger: 'blur'},
+                ],
+				password: [
+                    {required: true, message: '密码不能为空', trigger: 'blur'}
+                ],
+                name: {required: true, message: '名称不能为空'},
+				value: {required: true, message: '值不能为空',}
+			}
+		}
+	},
+	methods: {
+		handleSubmit() {
+			// 调用form组件的validate方法
+            this.$refs.loginForm.validate((errors,field) => {
+            	console.log('va')
+            })
+		},
+		handleAdd() {
+			this.loginInfo.list.push({});
+		}
+	}
+}
+</script>
+```
 在输入值改变时触发自定义的`form.item.change`事件，例如下面的`input`组件，`value`和`handleBlur`方法是内部组件的方法，只需要原封不动的复制过来加上`this.dispatch`触发事件。`dispatch`作为一个通用的方法放在`emitter.js`中。
 #### Input组件
 ```javascript
@@ -220,7 +286,7 @@ export default {
 - 校验的规则`rule`将作为`prop`属性接收。这样就可以独立校验规则，即使`model`数据对象结构复杂，也不影响`rule`。例如`list`数组第一个列表项里的`name`，它的校验规则永远是`{required: true, message: '密码不能为空', trigger: 'blur'}`，就可以脱离`list`存在。
 - 表单项数据将从父级`Form`中的`model`中获取。
 
-```
+```javascript
 <template>
 	<div class="t-form-item_wrapper form-group">
 		<label>{{label}}</label>
