@@ -12,6 +12,22 @@
   color: #2F2F2F;
   font-size: 18px;
   line-height: 1.6em;
+  padding-top: 20px;
+}
+
+.post-item .post-sum blockquote {
+    border-left: 4px solid #cbcbcb;
+    background: #f8f8f8;
+    color: #666666;
+}
+
+.post-item .post-sum blockquote a:link {
+    color: #0269c8;
+    border-bottom: 1px solid #d1e9ff;
+}
+.post-item .post-sum blockquote a:hover {
+  color: #275b8c;
+  
 }
 
 .post-item .post-sum p,
@@ -40,9 +56,9 @@
 
 .post-item .post-sum strong {
   /*color: #fb6b5b;*/
-  color: #109D84;
+  /* color: #109D84; */
+  color: #2e2f3e;
 }
-.post-item .post-sum a:link { text-decoration: underline; }
 .post-item .post-sum a:hover { text-decoration: none; }
 .post-sum p img { 
   border-radius: 5px;
