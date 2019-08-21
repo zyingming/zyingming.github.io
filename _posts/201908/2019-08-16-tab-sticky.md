@@ -22,12 +22,15 @@ author: "zyingming"
 - 通过`$slots.default`拿到头部`items`
 - 通过当前选定的组件`name`比对`items`，渲染高亮划线框
 - 通过`provide`将本身`this`传递下去.`rootTab:this`
+
 ### `tab-item`
 - 通过`inject`得到可响应的`this.rootTab.value`，渲染被选中时的样式
+
+
 ### `sticky-container`
 参考`react-sticky`的**发布订阅模式**，当**window**发生滚动的时候把距离顶部的位置信息传递给**订阅者**。`react-sticky`对于滚动事件的触发使用了`raf`进行包装，滚动事件如果实时触发过于频繁可能会卡帧，所以通过浏览器的帧刷新频率进行触发。通过`provide`把**订阅方法**和**本身this**传递下去。
 
-`raf`库控制动画，它是对requestAnimationFrame做了兼容性处理。
+> `raf`库控制动画，它是对requestAnimationFrame做了兼容性处理。
 
 ```javascript
 //主要代码
@@ -107,8 +110,8 @@ methods: {
 }
 ```
 
-### provide和inject
-官方文档中写明这一对更适合在组件库中进行使用，用于**父与子**、**祖与子**两个不相邻组件之间的通信，联系比较紧密的小规模通信，因为如果你传递了一个**可响应对象**，那当**子级**修改了可响应对象的一个属性之后，会同步修改**父级**。例如上面的`tab`和`tab-item`，当父级修改了`value`之后，子级`tab-item`便可以收到修改之后的`value`，据此显示当前高亮的`tab-item`。
+### `provide`和`inject`
+官方文档中写明这一对更适合在组件库中进行使用，用于**父与子**、**祖与子**两个不相邻组件之间的通信，联系比较紧密的小规模通信，因为如果你传递了一个**可响应对象**，那当**子级**修改了可响应对象的一个属性之后，会同步修改**父级**。上面的`tab`和`tab-item`，当父级修改了`value`之后，子级`tab-item`便可以收到修改之后的`value`，据此显示当前高亮的`tab-item`。
 
 **可响应对象**在`Vue`中会对`provide/inject`中的**每一个对象**建立一个`Observer`。首先`provide/inject`是怎么联系的呢？从源码中可以看到，
 
@@ -118,19 +121,7 @@ export function initInjections (vm: Component) {
   if (result) {
     toggleObserving(false)
     Object.keys(result).forEach(key => {
-      /* istanbul ignore else */
-      if (process.env.NODE_ENV !== 'production') {
-        defineReactive(vm, key, result[key], () => {
-          warn(
-            `Avoid mutating an injected value directly since the changes will be ` +
-            `overwritten whenever the provided component re-renders. ` +
-            `injection being mutated: "${key}"`,
-            vm
-          )
-        })
-      } else {
-        defineReactive(vm, key, result[key])
-      }
+      defineReactive(vm, key, result[key])
     })
     toggleObserving(true)
   }
@@ -156,16 +147,6 @@ export function resolveInject (inject: any, vm: Component): ?Object {
           break
         }
         source = source.$parent
-      }
-      if (!source) {
-        if ('default' in inject[key]) {
-          const provideDefault = inject[key].default
-          result[key] = typeof provideDefault === 'function'
-            ? provideDefault.call(vm)
-            : provideDefault
-        } else if (process.env.NODE_ENV !== 'production') {
-          warn(`Injection "${key}" not found`, vm)
-        }
       }
     }
     return result
