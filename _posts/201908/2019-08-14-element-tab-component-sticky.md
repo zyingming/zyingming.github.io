@@ -151,4 +151,5 @@ export default {
 ### 零碎知识点
 - `css`的命名：采用短横线，比如`el-tabs__active-bar`，`__`后面可以跟状态类。
 - 一些节点看到没有用到的属性`role`、`aria-controls`。`aria-*`的作用就是描述这个tag在可视化的情境中的具体信息。例如`<div role="checkbox" aria-checked="checked"></div>`辅助工具就会知道，这个div实际上是个checkbox的角色，为选中状态。
+- [吸顶效果](https://juejin.im/post/5cd83db3e51d453ce606dbbc)
 
