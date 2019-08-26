@@ -46,6 +46,45 @@ function Button({ color, children }) {
 }
 ```
 
+`useMemo`返回一个`memoization`值，`memoization`通过缓存结果进行快速返回相同结果。平时也经常利用`{}`对象的`key:value`存储想要的结果，以便于下一次的快速返回。
+
+应该在纯函数上实现`memoization`。纯函数输入什么就返回什么，不存在副作用。在**处理递归函数**时，`Memoization`最有效，递归函数用于执行诸如GUI渲染，Sprite和动画物理等繁重操作。下面的例子是测试斐波那契函数。
+
+```javascript
+function memoize(fn) {
+    return function () {
+        var args = Array.prototype.slice.call(arguments)
+        fn.cache = fn.cache || {};
+        return fn.cache[args] ? fn.cache[args] : (fn.cache[args] = fn.apply(this,args))
+    }
+}
+
+
+
+function fibonacci(num) {
+    if (num == 1 || num == 2) {
+        return 1
+    }
+    return fibonacci(num-1) + fibonacci(num-2)
+}
+
+const memFib = memoize(fibonacci)
+console.time("non-memoized call")
+console.log(memFib(6))
+console.timeEnd("non-memoized call")
+
+
+console.time("memoized call")
+console.log(memFib(6))
+console.timeEnd("memoized call")
+
+//8
+//non-memoized call: 2.870ms
+//8
+//memoized call: 0.052ms
+```
+
+
 ### 响应属性变化
 
 ```javascript
