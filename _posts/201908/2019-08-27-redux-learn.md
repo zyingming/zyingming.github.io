@@ -146,7 +146,9 @@ function addTodo(state=initialState, action) {
 ```
 
 3. 在合成一个完整的`state`时，可以借助`redux`的工具类`combineReducers`:生成一个函数，这个函数来调用你的一系列 `reducer`，每个 `reducer` 根据它们的 `key` 来筛选出 `state` 中的一部分数据并处理。
+
 ```javascript
+
 import { combineReducers } from 'redux'
 
 const todoApp = combineReducers({
@@ -155,6 +157,7 @@ const todoApp = combineReducers({
 })
 
 export default todoApp
+
 ```
 
 通过以上两点的改造，项目中的`reducer`可能如下
